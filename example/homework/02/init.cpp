@@ -6,11 +6,18 @@
 int main(int argc, char* argv[]) {
   Kokkos::initialize(argc, argv);
   {
-  // set n and m, you can change these values
-  int n,m = 16;
-  // Make View
-  
-  // set values to 1000 * i * j;
+    // set n and m, you can change these values
+    int n,m = 16;
+    
+    // Make View
+    Kokkos::View<int**> view("view", n, m);
+    
+    // set values to 1000 * i * j;
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        view(i, j) = 1000 * i * j;
+      }
+    }
   }
   Kokkos::finalize();
 }
